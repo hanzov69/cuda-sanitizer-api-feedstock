@@ -1,14 +1,19 @@
 {% set name = "cuda-sanitizer-api" %}
-{% set version = "13.3.75" %}
-{% set cuda_version = "13.3" %}
+{% set version = "13.4.57" %}
+{% set cuda_version = "13.4" %}
 {% set platform = "linux-x86_64" %}  # [linux64]
 {% set platform = "linux-ppc64le" %}  # [ppc64le]
 {% set platform = "linux-sbsa" %}  # [aarch64]
-{% set platform = "windows-x86_64" %}  # [win]
+{% set platform = "windows-x86_64" %}  # [win64]
+{% set platform = "windows-arm64" %}  # [win and arm64]
 {% set extension = "tar.xz" %}  # [not win]
 {% set extension = "zip" %}  # [win]
 {% set exists = "which" %}  # [not win]
 {% set exists = "where" %}  # [win]
+{% set sha256 = "443465d4dcb77f45a2eb2c9adf2d1e0d7b4d0966ce84acf6d89b4c555bd55f5b" %}  # [linux64]
+{% set sha256 = "275928dee0c2c61316a61faeb7a2930de60a986e005b7d1c25e861a4ecb9fd13" %}  # [aarch64]
+{% set sha256 = "8a1af222f79e3ee1a6539dc9d59825685e0361f03a752fc50ab62a8e34fd9a77" %}  # [win64]
+{% set sha256 = "39fea12b65c9a17932f680fa6245d3cbf5fb8fb78665becd3357c924b6956d60" %}  # [win and arm64]
 
 package:
   name: {{ name|lower }}
@@ -16,9 +21,7 @@ package:
 
 source:
   url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_sanitizer_api/{{ platform }}/cuda_sanitizer_api-{{ platform }}-{{ version }}-archive.{{ extension }}
-  sha256: f409be1ba58f44a0a1c826933fa6d557659bfb5b29f4d175979d1cf9c530e3cf  # [linux64]
-  sha256: 2119f246c71e54bffb7b3dd4d379ea94b37c66e8c0128e457366fcdb5a98f4cf  # [aarch64]
-  sha256: 28946f4ccb0721732239c308c967aea2a5c574fe21653657e0df0d45580d1600  # [win]
+  sha256: {{ sha256 }}
 
 build:
   number: 0
