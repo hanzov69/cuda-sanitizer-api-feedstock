@@ -10,6 +10,10 @@
 {% set extension = "zip" %}  # [win]
 {% set exists = "which" %}  # [not win]
 {% set exists = "where" %}  # [win]
+{% set sha256 = "443465d4dcb77f45a2eb2c9adf2d1e0d7b4d0966ce84acf6d89b4c555bd55f5b" %}  # [linux64]
+{% set sha256 = "275928dee0c2c61316a61faeb7a2930de60a986e005b7d1c25e861a4ecb9fd13" %}  # [aarch64]
+{% set sha256 = "8a1af222f79e3ee1a6539dc9d59825685e0361f03a752fc50ab62a8e34fd9a77" %}  # [win64]
+{% set sha256 = "39fea12b65c9a17932f680fa6245d3cbf5fb8fb78665becd3357c924b6956d60" %}  # [win and arm64]
 
 package:
   name: {{ name|lower }}
@@ -17,10 +21,7 @@ package:
 
 source:
   url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_sanitizer_api/{{ platform }}/cuda_sanitizer_api-{{ platform }}-{{ version }}-archive.{{ extension }}
-  sha256: 443465d4dcb77f45a2eb2c9adf2d1e0d7b4d0966ce84acf6d89b4c555bd55f5b  # [linux64]
-  sha256: 275928dee0c2c61316a61faeb7a2930de60a986e005b7d1c25e861a4ecb9fd13  # [aarch64]
-  sha256: 8a1af222f79e3ee1a6539dc9d59825685e0361f03a752fc50ab62a8e34fd9a77  # [win64]
-  sha256: 39fea12b65c9a17932f680fa6245d3cbf5fb8fb78665becd3357c924b6956d60  # [win and arm64]
+  sha256: {{ sha256 }}
 
 build:
   number: 0
